@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychedelic Fishing Rods</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff00cc, #3333ff, #00ffcc);
+            background-size: 300% 300%;
+            animation: gradient 15s ease infinite;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-top: 20vh;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel svg {
+            width: 150px;
+            height: auto;
+            margin: 0 15px;
+            animation: float 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0% { transform: translatey(0); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0); }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .flying-rod {
+            position: absolute;
+            animation: fly 5s linear infinite, rotate 4s linear infinite, breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100vw); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            font-size: 1.2rem;
+            animation: fade-in 3s ease-in-out infinite;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 5px;
+            color: #ff00cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Psychedelic Fishing Rods!</h1>
+
+    <div class="carousel" id="carousel">
+        <svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 280 Q20 150 50 100 Q80 50 70 0" fill="none" stroke="url(#grad1)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="70" cy="0" r="10" fill="url(#grad2)"></circle>
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+        
+        <svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 280 Q30 140 50 90 Q70 40 60 0" fill="none" stroke="url(#grad3)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="60" cy="0" r="10" fill="url(#grad4)"></circle>
+            <defs>
+                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+        
+        <svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+    <svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 74.3262vw; top: 19.5102vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 10.0829vw; top: 30.3405vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 79.9053vw; top: 9.18603vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 72.1088vw; top: 10.1919vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 36.4263vw; top: 49.3034vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 47.2213vw; top: 13.5997vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 4.60536vw; top: 9.38993vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 54.4805vw; top: 19.228vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 78.6271vw; top: 36.3375vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 71.5516vw; top: 22.2156vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 57.5164vw; top: 34.9719vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 3.32645vw; top: 26.964vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 43.8796vw; top: 8.32152vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 3.37016vw; top: 4.68288vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 15.1943vw; top: 16.4723vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 59.7399vw; top: 35.8647vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 1.66574vw; top: 41.2047vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 71.8477vw; top: 38.1802vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 0.568677vw; top: 11.6622vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 15.0944vw; top: 46.6377vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 17.6087vw; top: 9.39361vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 16.0402vw; top: 49.5517vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 69.5307vw; top: 10.7682vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 51.5041vw; top: 11.0648vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 24.959vw; top: 18.5165vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 0.601922vw; top: 18.6738vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 35.5444vw; top: 35.8575vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 34.4482vw; top: 25.9893vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 12.9825vw; top: 12.2429vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 36.0381vw; top: 47.4799vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 35.9661vw; top: 45.3598vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 40.1438vw; top: 24.4777vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 57.1081vw; top: 3.88915vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 19.5023vw; top: 8.69622vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 51.4022vw; top: 39.3491vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 18.5574vw; top: 41.4813vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 54.1817vw; top: 14.1097vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 15.5507vw; top: 34.2919vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 65.2607vw; top: 47.7513vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 14.1572vw; top: 17.3402vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 64.9495vw; top: 15.02vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 17.0566vw; top: 28.9587vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 24.1915vw; top: 21.8976vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 61.6028vw; top: 32.8696vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 77.9409vw; top: 16.33vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 74.2816vw; top: 22.1118vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 59.0481vw; top: 19.5657vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg><svg class="flying-rod" viewBox="0 0 100 300" xmlns="http://www.w3.org/2000/svg" onclick="duplicateRod(event)" style="position: absolute; left: 43.2562vw; top: 35.3751vh; animation: 5s linear 0s infinite normal none running fly, 4s linear 0s infinite normal none running rotate, 4s ease-in-out 0s infinite normal none running breathe;">
+            <path d="M50 280 Q40 160 50 110 Q60 60 50 0" fill="none" stroke="url(#grad5)" stroke-width="5" onclick="duplicateRod(event)"></path>
+            <circle cx="50" cy="0" r="10" fill="url(#grad6)"></circle>
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#ff00cc;stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1"></stop>
+                    <stop offset="100%" style="stop-color:#3333ff;stop-opacity:1"></stop>
+                </linearGradient>
+            </defs>
+        </svg></div>
+
+    <button class="button">Shop Now</button>
+
+    <div class="footer">Catch the wave of colors!</div>
+
+    <script>
+        function duplicateRod(event) {
+            const originalRod = event.target.closest('svg');
+            const clonedRod = originalRod.cloneNode(true);
+            const carousel = document.getElementById('carousel');
+            const randomX = Math.random() * 80; // Randomize position
+            const randomY = Math.random() * 50; // Randomize position
+            clonedRod.style.position = 'absolute';
+            clonedRod.style.left = randomX + 'vw';
+            clonedRod.style.top = randomY + 'vh';
+            clonedRod.setAttribute('onclick', 'duplicateRod(event)'); // Make it clickable
+            clonedRod.style.animation = 'fly 5s linear infinite, rotate 4s linear infinite, breathe 4s ease-in-out infinite';
+            carousel.appendChild(clonedRod);
+        }
+    </script>
+</body>
+</html>
