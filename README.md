@@ -6,6 +6,13 @@ An interactive web application that uses AI to generate websites based on natura
 
 - 🤖 AI-powered website generation using OpenAI's API
 - 🔑 Bring your own OpenAI API key
+- 🎯 Multiple AI model options:
+  - GPT-4o Mini
+  - GPT-4o
+  - GPT-4
+  - GPT-3.5
+  - O1 Mini
+  - O1 Preview
 - 🖥️ Real-time preview
 - 📝 Version history with restore points
 - 🔄 Copy generated HTML code
@@ -13,7 +20,7 @@ An interactive web application that uses AI to generate websites based on natura
 - 🖱️ Draggable interface
 - ⚡ Fast and responsive
 - 🔒 Multi-user support with session management
-- 💾 Persistent storage using pickle
+- 💾 Persistent storage using pickle with file locking
 
 ## Prerequisites
 
@@ -25,10 +32,10 @@ Before you begin, ensure you have the following installed:
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/BonifacioCalindoro/ai-website-builder
-   cd ai-website-builder
-   ```
+    ```bash
+    git clone https://github.com/BonifacioCalindoro/ai-website-builder
+    cd ai-website-builder
+    ```
 
 2. Create a virtual environment (recommended):
     ```bash
@@ -61,9 +68,11 @@ Before you begin, ensure you have the following installed:
 
 ### Getting Started
 1. Enter your OpenAI API key in the input field
-2. Type your website description
-3. Click "Generate" or press Enter
-4. Watch as your website appears in the preview window
+2. Select your preferred AI model from the dropdown
+3. Type your website description
+4. Click "Generate" or press Enter
+5. Watch as your website appears in the preview window
+
 
 ### Generating a Website
 
@@ -95,6 +104,7 @@ You can continue editing the website by clicking "Generate" with a new prompt.
 ### Interface Controls
 
 - **API Key**: Enter your OpenAI API key (required for generation)
+- **Model Selection**: Choose your preferred AI model
 - **Drag & Drop**: Click and drag the prompt panel header to move it
 - **Minimize**: Click the "-" button to collapse the prompt panel
 - **Copy HTML**: Click the "Copy HTML" button to copy the generated code
@@ -104,15 +114,18 @@ You can continue editing the website by clicking "Generate" with a new prompt.
 ## Technical Details
 
 - Backend: FastAPI (Python)
-- AI Model: GPT-4o-mini via OpenAI API
+- AI Models: Multiple OpenAI models with optimizations
 - Frontend: Vanilla JavaScript
 - Session Management: Cookie-based with pickle storage
 - Real-time updates using iframe refresh
 - File locking for concurrent access
+- Persistent sessions across server restarts
 
 ## Limitations
 
 - Requires OpenAI API key
+- Different models have different capabilities and speeds
+- API costs vary by model choice
 
 ## Contributing
 

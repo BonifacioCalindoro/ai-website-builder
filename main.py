@@ -125,22 +125,11 @@ async def generate_website(message: Message):
         session["chat_history"].append({"role": "user", "content": message.message})
         
         # Prepare messages based on model type
-        if message.model in ['o1-mini', 'o1-preview']:
-            if len(session["chat_history"]) > 0 and session["chat_history"][0]['role'] == "system":
-                session["chat_history"][0] = {"role": "user", "content": session["chat_history"][0]['content']}
-            messages = [
-                {"role": "user", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
-                {"role": "user", "content": message.message},
-                *session["chat_history"]
-            ]
-        else:
-            if len(session["chat_history"]) > 0 and session["chat_history"][0]['role'] == "user":
-                session["chat_history"][0] = {"role": "system", "content": session["chat_history"][0]['content']}
-            messages = [
-                {"role": "system", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
-                *session["chat_history"]
-            ]
-    
+        messages = [
+            {"role": "user" if message.model in ['o1-mini', 'o1-preview'] else "system", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
+            *session["chat_history"]
+        ]
+
     try:
         print(message.model)
         client = AsyncOpenAI(api_key=message.api_key)
