@@ -1,3 +1,9 @@
 __pycache__/
+*.py[cod]
+*$py.class
 .env
+
+# Project specific
+data/
+*.pkl
 .venv/
