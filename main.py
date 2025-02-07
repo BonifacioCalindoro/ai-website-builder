@@ -24,6 +24,7 @@ async def load_sessions() -> Dict[str, dict]:
                     try:
                         sessions = pickle.load(f)
                         print(f"Loaded {len(sessions)} sessions from {SESSIONS_FILE}")
+                        return sessions
                     except (pickle.UnpicklingError, EOFError):
                         return {}
             return {}
@@ -92,9 +93,25 @@ async def read_root(request: Request, response: Response):
     if not session_id or session_id not in sessions:
         session_id = await create_session()
     
+    # Get the chat history for this session
+    chat_history = []
+    if session_id in sessions:
+        chat_pairs = []
+        for i in range(0, len(sessions[session_id]["chat_history"]), 2):
+            if i + 1 < len(sessions[session_id]["chat_history"]):
+                user_msg = sessions[session_id]["chat_history"][i]
+                ai_msg = sessions[session_id]["chat_history"][i + 1]
+                chat_pairs.append({
+                    "message": user_msg["content"],
+                    "timestamp": "",  # We could add timestamp to sessions if needed
+                    "html": ai_msg["content"]
+                })
+        chat_history = chat_pairs
+    
     response = templates.TemplateResponse("index.html", {
         "request": request,
-        "session_id": session_id
+        "session_id": session_id,
+        "chat_history": chat_history
     })
     response.set_cookie(key="session_id", value=session_id)
     return response

@@ -385,7 +385,8 @@
         const shareModal = document.getElementById('share-modal');
         const modalBackdrop = document.getElementById('modal-backdrop');
         const shareUrlInput = document.getElementById('share-url');
-        let messageHistory = [];
+        let messageHistory = {{ chat_history | tojson | safe }} || [];
+        updateChatHistory();  // Update the UI with initial history
 
         // Dragging functionality
         let isDragging = false;
