@@ -22,7 +22,8 @@ async def load_sessions() -> Dict[str, dict]:
             if SESSIONS_FILE.exists():
                 with open(SESSIONS_FILE, 'rb') as f:
                     try:
-                        return pickle.load(f)
+                        sessions = pickle.load(f)
+                        print(f"Loaded {len(sessions)} sessions from {SESSIONS_FILE}")
                     except (pickle.UnpicklingError, EOFError):
                         return {}
             return {}
@@ -72,7 +73,8 @@ DEFAULT_HTML = """
 class Message(BaseModel):
     message: str
     session_id: str
-    api_key: str | None = None  # Make it optional for non-generate endpoints
+    api_key: str | None = None
+    model: str | None = "gpt-4o-mini"  # Changed default to gpt-4o-mini
 
 async def create_session() -> str:
     session_id = str(uuid.uuid4())
@@ -122,17 +124,30 @@ async def generate_website(message: Message):
         session = sessions[session_id]
         session["chat_history"].append({"role": "user", "content": message.message})
         
-        messages = [
-            {"role": "system", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
-            *session["chat_history"]
-        ]
+        # Prepare messages based on model type
+        if message.model in ['o1-mini', 'o1-preview']:
+            if len(session["chat_history"]) > 0 and session["chat_history"][0]['role'] == "system":
+                session["chat_history"][0] = {"role": "user", "content": session["chat_history"][0]['content']}
+            messages = [
+                {"role": "user", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
+                {"role": "user", "content": message.message},
+                *session["chat_history"]
+            ]
+        else:
+            if len(session["chat_history"]) > 0 and session["chat_history"][0]['role'] == "user":
+                session["chat_history"][0] = {"role": "system", "content": session["chat_history"][0]['content']}
+            messages = [
+                {"role": "system", "content": "You are a website builder. Generate clean, valid HTML code based on user requests. Respond only with HTML code, no explanations."},
+                *session["chat_history"]
+            ]
     
     try:
+        print(message.model)
         client = AsyncOpenAI(api_key=message.api_key)
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=message.model,
             messages=messages,
-            temperature=0.7,
+            temperature=0.7 if message.model not in ['o1-mini', 'o1-preview'] else 1,
         )
         
         ai_message = response.choices[0].message.content.replace("```html", "").split("```")[0]
@@ -148,9 +163,10 @@ async def generate_website(message: Message):
                 "current_html": session["current_html"]
             }
     except Exception as e:
+        print(e)
         return {
             "status": "error",
-            "message": "Invalid API key or API error"
+            "message": str(e) if "Unsupported value" in str(e) else "Invalid API key or API error"
         }
 
 @app.post("/restore")

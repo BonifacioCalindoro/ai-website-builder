@@ -271,6 +271,47 @@
             margin-top: 5px;
             font-size: 14px;
         }
+        .model-selector {
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .model-selector label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .model-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        
+        .model-select:hover {
+            border-color: #3498db;
+        }
+        
+        .model-select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+        }
+        .model-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            padding: 0 2px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -284,6 +325,20 @@
             <button class="show-hide-btn" id="show-hide-key">👁️</button>
             <div class="api-key-help">
                 Need an API key? <a href="https://platform.openai.com/api-keys" target="_blank">Get one here</a>
+            </div>
+        </div>
+        <div class="model-selector">
+            <label for="model-select">Select Model:</label>
+            <select id="model-select" class="model-select">
+                <option value="gpt-4o-mini" selected>GPT-4o Mini (Faster, optimized)</option>
+                <option value="gpt-4o">GPT-4o (Optimized for HTML)</option>
+                <option value="gpt-4">GPT-4 (High quality)</option>
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Fast, balanced)</option>
+                <option value="o1-mini">O1 Mini (Fast, latest gen)</option>
+                <option value="o1-preview">O1 Preview (Experimental)</option>
+            </select>
+            <div class="model-info">
+                Choose a model based on your needs. Faster models may be less accurate.
             </div>
         </div>
         <form id="chat-form">
@@ -396,6 +451,7 @@
         // Add these constants
         const apiKeyInput = document.getElementById('api-key');
         const showHideKeyBtn = document.getElementById('show-hide-key');
+        const modelSelect = document.getElementById('model-select');
         
         // Add show/hide password functionality
         showHideKeyBtn.addEventListener('click', () => {
@@ -409,6 +465,7 @@
             e.preventDefault();
             const message = input.value;
             const apiKey = apiKeyInput.value;
+            const model = modelSelect.value;
             
             if (!message.trim()) return;
             if (!apiKey.trim()) {
@@ -429,7 +486,8 @@
                     body: JSON.stringify({ 
                         message,
                         session_id: sessionId,
-                        api_key: apiKey
+                        api_key: apiKey,
+                        model: model
                     }),
                 });
                 
