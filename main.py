@@ -38,7 +38,7 @@ async def read_root(request: Request):
 
 @app.get("/preview", response_class=HTMLResponse)
 async def preview():
-    return HTMLResponse(content=current_html.replace("```html", "").replace("```", ""))
+    return HTMLResponse(content=current_html.replace("```html", "").split("```")[0])
 
 @app.post("/generate")
 async def generate_website(message: Message):
