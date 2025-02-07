@@ -150,6 +150,168 @@
         .chat-history-btn[aria-expanded="true"] .chevron {
             transform: rotate(180deg);
         }
+        .clear-history-btn {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .clear-history-btn:hover {
+            background-color: #c0392b;
+        }
+        .publish-button {
+            position: fixed;
+            bottom: 20px;
+            right: 140px;
+            z-index: 1000;
+            background-color: #27ae60;
+            padding: 12px 24px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .publish-button:hover {
+            background-color: #219a52;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            z-index: 2000;
+        }
+        .modal.show {
+            display: block;
+        }
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+        }
+        .modal-backdrop.show {
+            display: block;
+        }
+        .share-url {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .api-key-container {
+            margin-bottom: 15px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .api-key-input {
+            width: 100%;
+            padding: 10px 35px 10px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        .show-hide-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+            color: #666;
+            transition: color 0.2s;
+        }
+        
+        .show-hide-btn:hover {
+            color: #333;
+        }
+        
+        .api-key-help {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #666;
+            padding: 0 2px;
+        }
+        
+        .api-key-help a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .api-key-help a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .model-selector {
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .model-selector label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .model-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        
+        .model-select:hover {
+            border-color: #3498db;
+        }
+        
+        .model-select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+        }
+        .model-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            padding: 0 2px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -157,6 +319,27 @@
         <div id="prompt-header">
             AI Website Builder
             <button class="minimize-btn" id="minimize-btn">−</button>
+        </div>
+        <div class="api-key-container">
+            <input type="password" id="api-key" placeholder="Enter your OpenAI API key" class="api-key-input">
+            <button class="show-hide-btn" id="show-hide-key">👁️</button>
+            <div class="api-key-help">
+                Need an API key? <a href="https://platform.openai.com/api-keys" target="_blank">Get one here</a>
+            </div>
+        </div>
+        <div class="model-selector">
+            <label for="model-select">Select Model:</label>
+            <select id="model-select" class="model-select">
+                <option value="gpt-4o-mini" selected>GPT-4o Mini (Faster, optimized)</option>
+                <option value="gpt-4o">GPT-4o (Optimized for HTML)</option>
+                <option value="gpt-4">GPT-4 (High quality)</option>
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Fast, balanced)</option>
+                <option value="o1-mini">O1 Mini (Fast, latest gen)</option>
+                <option value="o1-preview">O1 Preview (Experimental)</option>
+            </select>
+            <div class="model-info">
+                Choose a model based on your needs. Faster models may be less accurate.
+            </div>
         </div>
         <form id="chat-form">
             <input type="text" id="user-input" placeholder="Describe the website you want to build...">
@@ -167,10 +350,23 @@
             Chat History
             <span class="chevron">▼</span>
         </button>
+        <button class="clear-history-btn" id="clear-btn">
+            Clear History
+        </button>
         <div class="chat-history-dropdown"></div>
     </div>
     <button class="copy-button" id="copy-btn">Copy HTML</button>
+    <button class="publish-button" id="publish-btn">Publish</button>
     <iframe id="preview" src="/preview"></iframe>
+
+    <div class="modal" id="share-modal">
+        <h3>Your page has been published!</h3>
+        <p>Share this URL with others:</p>
+        <input type="text" class="share-url" id="share-url" readonly>
+        <button onclick="copyShareUrl()">Copy URL</button>
+        <button onclick="closeModal()">Close</button>
+    </div>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
 
     <script>
         const form = document.getElementById('chat-form');
@@ -184,6 +380,11 @@
         const promptHeader = document.getElementById('prompt-header');
         const chatHistoryBtn = document.querySelector('.chat-history-btn');
         const chatHistoryDropdown = document.querySelector('.chat-history-dropdown');
+        const clearBtn = document.getElementById('clear-btn');
+        const publishBtn = document.getElementById('publish-btn');
+        const shareModal = document.getElementById('share-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const shareUrlInput = document.getElementById('share-url');
         let messageHistory = [];
 
         // Dragging functionality
@@ -241,33 +442,70 @@
             chatHistoryDropdown.classList.toggle('show');
         });
 
+        // Add this near the top of the script section
+        const sessionId = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('session_id='))
+            ?.split('=')[1];
+
+        // Add these constants
+        const apiKeyInput = document.getElementById('api-key');
+        const showHideKeyBtn = document.getElementById('show-hide-key');
+        const modelSelect = document.getElementById('model-select');
+        
+        // Add show/hide password functionality
+        showHideKeyBtn.addEventListener('click', () => {
+            const type = apiKeyInput.type === 'password' ? 'text' : 'password';
+            apiKeyInput.type = type;
+            showHideKeyBtn.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+
+        // Update the form submit event listener
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const message = input.value;
+            const apiKey = apiKeyInput.value;
+            const model = modelSelect.value;
+            
             if (!message.trim()) return;
-
+            if (!apiKey.trim()) {
+                alert('Please enter your OpenAI API key');
+                return;
+            }
+            
             loader.style.display = 'block';
             submitBtn.disabled = true;
             input.disabled = true;
-
+            
             try {
                 const response = await fetch('/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ message }),
+                    body: JSON.stringify({ 
+                        message,
+                        session_id: sessionId,
+                        api_key: apiKey,
+                        model: model
+                    }),
                 });
-
+                
                 const data = await response.json();
+                
+                if (data.status === 'error') {
+                    alert(data.message);
+                    return;
+                }
+                
                 preview.src = '/preview?' + new Date().getTime();
-
+                
                 // Add message to history
                 const timestamp = new Date().toLocaleTimeString();
                 messageHistory.push({
                     message,
                     timestamp,
-                    html: data.current_html // We'll need to modify the backend to send this
+                    html: data.current_html
                 });
                 updateChatHistory();
             } catch (error) {
@@ -337,6 +575,73 @@
                 alert('Failed to restore version');
             }
         }
+
+        clearBtn.addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to clear your history and reset the website?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/clear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    // Clear local message history
+                    messageHistory = [];
+                    updateChatHistory();
+                    
+                    // Reset preview
+                    preview.src = '/preview?' + new Date().getTime();
+                    
+                    // Show success message
+                    alert('History cleared successfully!');
+                }
+            } catch (error) {
+                console.error('Error clearing history:', error);
+                alert('Failed to clear history');
+            }
+        });
+
+        publishBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/publish', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const shareUrl = `${window.location.origin}/p/${data.public_id}`;
+                    shareUrlInput.value = shareUrl;
+                    
+                    shareModal.classList.add('show');
+                    modalBackdrop.classList.add('show');
+                }
+            } catch (error) {
+                console.error('Error publishing page:', error);
+                alert('Failed to publish page');
+            }
+        });
+        
+        function copyShareUrl() {
+            shareUrlInput.select();
+            document.execCommand('copy');
+            alert('URL copied to clipboard!');
+        }
+        
+        function closeModal() {
+            shareModal.classList.remove('show');
+            modalBackdrop.classList.remove('show');
+        }
+        
+        modalBackdrop.addEventListener('click', closeModal);
     </script>
 </body>
 </html> 
